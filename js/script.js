@@ -63,9 +63,9 @@ function handleFormSubmission(event) {
 function displayDataInTable() {
     // Ambil data dari localStorage
     var storedFormData = localStorage.getItem('formData');
-    // if (!storedFormData) {
-    //     return; // Tidak ada data yang disimpan di localStorage
-    // }
+    if (!storedFormData) {
+        return; // Tidak ada data yang disimpan di localStorage
+    }
 
     storedFormData = JSON.parse(storedFormData);
 
@@ -88,9 +88,6 @@ function displayDataInTable() {
     var priceInfo2Element = document.getElementById('priceInfo2');
     var priceInfo3Element = document.getElementById('priceInfo3');
     var priceInfo4Element = document.getElementById('priceInfo4');
-
-    var routeHeading = document.getElementById('route');
-    var detailsCell = document.getElementById('details');
 
     if (routeHeading && detailsCell) {
         routeHeading.innerHTML = fromValue + ' &rarr; ' + toValue;
@@ -157,8 +154,12 @@ function displayDataInTable() {
 
 
     // Simpan total harga ke localStorage
-    localStorage.setItem('totalPrice', totalPrice.toString());}
-
+    if (totalPrice !== undefined) {
+        localStorage.setItem('totalPrice', totalPrice.toString());
+    }
+}
+    
+    
 document.addEventListener('DOMContentLoaded', function () {
     // Periksa apakah halaman saat ini adalah index.html berdasarkan judul (title)
     var isIndexPage = document.title.toLowerCase().includes("home");
@@ -315,70 +316,74 @@ if (timeElement) {
 }
 
 
-// Menangani pengiriman formulir ketika formulir disubmit
-form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Menghentikan perilaku bawaan submit
-  
-    // Ambil nilai dari elemen formulir
-    var fromValue = document.getElementById('fromInput').value;
-    var toValue = document.getElementById('toInput').value;
-    var dateValue = document.getElementById('dateInput').value;
-    var passengersValue = document.getElementById('passengersInput').value;
-  
-    // Ambil nilai dari elemen formulir kontak
-    var salutationValue = document.querySelector('input[name="salutation"]:checked').value;
-    var nameValue = document.getElementsByName('name')[0].value;
-    var phoneNumberValue = document.getElementsByName('phone_number')[0].value;
-    var emailValue = document.getElementsByName('email')[0].value;
-  
-    // Ambil total harga dari localStorage (harus disimpan sebelumnya oleh skrip lain)
-    var totalPrice = localStorage.getItem('totalPrice');
-  
-    // Objek data untuk dikirim melalui fetch
-    var formData = {
-      from: fromValue,
-      to: toValue,
-      date: dateValue,
-      passengers: passengersValue,
-      salutation: salutationValue,
-      name: nameValue,
-      phone_number: phoneNumberValue,
-      email: emailValue,
-      totalPrice: totalPrice // Tambahkan total harga ke dalam objek data
-    };
-  
+document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('bookconfirm');
+
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Menghentikan perilaku bawaan submit
+
+            // Ambil data dari localStorage
+            var formData = JSON.parse(localStorage.getItem('formData'));
+            var contactDetails = JSON.parse(localStorage.getItem('contactDetails'));
+            var totalPrice = localStorage.getItem('totalPrice');
+
+            // Log data sebelum dikirim
+            console.log('formData:', formData);
+            console.log('contactDetails:', contactDetails);
+            console.log('totalPrice:', totalPrice);
+
+            // Panggil sendData untuk mengirim data
+            sendData(formData, contactDetails, totalPrice);
+        });
+    }
+
+// Fungsi untuk mengirim data
+function sendData(formData, contactDetails, totalPrice) {
     // Lakukan permintaan fetch
     fetch('https://test-be-surabaya-7-production.up.railway.app/bookconfirm', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            from: formData.from,
+            to: formData.to,
+            date: formData.date,
+            passengers: formData.passengers,
+            salutation: contactDetails.salutation,
+            name: contactDetails.name,
+            phone_number: contactDetails.phone_number,
+            email: contactDetails.email,
+            totalPrice: totalPrice
+        })
     })
-      .then((response) => {
+    .then((response) => {
         if (response.ok) {
-          return response.json(); // Menguraikan respons JSON jika berhasil
+            return response.json();
         } else {
-          throw new Error("Permintaan gagal"); // Mengangkat kesalahan jika permintaan gagal
+            throw new Error("Gagal mendapatkan respons JSON");
         }
-      })
-      .then((data) => {
+    })
+    .then((data) => {
         if (data.message) {
-          // Menampilkan pesan dari server dengan nomor registrasi
-          const registrationNumber = data.message.split(" ").pop();
-          const successMessage = document.getElementById("success-message");
-          const registrationNumberSpan = document.getElementById("registration-number");
-  
-          registrationNumberSpan.textContent = registrationNumber;
-          successMessage.classList.remove("hidden");
-          // Di sini Anda bisa menangani respons dari server
+            // Menampilkan pesan dari server dengan nomor registrasi
+            const registrationNumber = data.message.split(" ").pop();
+            const successMessage = document.getElementById("success-message");
+            const registrationNumberSpan = document.getElementById("registration-number");
+
+            registrationNumberSpan.textContent = registrationNumber;
+            successMessage.classList.remove("hidden");
+            // Hapus item dari localStorage setelah berhasil terkirim
+            localStorage.removeItem('formData');
+            localStorage.removeItem('contactDetails');
+            localStorage.removeItem('totalPrice');
         } else {
-          throw new Error("Pesan tidak ditemukan dalam respons");
+            throw new Error("Pesan tidak ditemukan dalam respons");
         }
-      })
-      .catch((error) => {
+    })
+    .catch((error) => {
         console.error("Terjadi kesalahan:", error);
-        // Di sini Anda bisa menangani kesalahan jika permintaan gagal
-      });
-  });
-  
+    });
+}
+});

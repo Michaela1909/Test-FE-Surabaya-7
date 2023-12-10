@@ -104,24 +104,30 @@
             </table>
         </div>
 
-        <div class="total-payment">
-            <table class="payment-table">
-            <tr>
-                <td>
-                    <h1 class="total-price"></h1>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="submit" class="paymentButton" id="payButton" fun>Booking Now</button>
-                </td>
-            </tr>
-            <div id="success-message" class="hidden">
-                Data telah diterima dengan nomor registrasi: <span id="registration-number"></span>
+        <form id="bookconfirm">
+            <div class="total-payment">
+                <table class="payment-table">
+                    <tr>
+                        <td>
+                            <h1 class="total-price"></h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit" class="paymentButton" id="payButton">Booking Now</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="success-message" class="hidden">
+                                Data telah diterima dengan nomor registrasi: <span id="registration-number"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            </table>
-        </div>
-
+        </form>
+        
         <footer class="footer">
             <p class="footer-copyright">&copy; 2023 Ocean 7 Traverse, Inc. All rights reserved</p>
             <div class="footer-content">
