@@ -405,12 +405,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-// Fungsi toggleNav() untuk diaktifkan melalui atribut onclick
-function toggleNav() {
-    const nav = document.querySelector('.nav');
-    const hamburger = document.querySelector('.hamburger');
-
-    nav.classList.toggle('active');
-    hamburger.classList.toggle('active');
-}
