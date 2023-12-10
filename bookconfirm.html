@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style.css">
-        <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
         <title>Ocean 7 Traverse</title> 
         <link rel="icon" href="assets/logo.png" type="image/png">
     </head>
@@ -20,52 +20,52 @@
             </button>        
 
             <nav class="nav">
-                <a href="home.html">Home</a>
+                <a href="index.html">Home</a>
                 <a href="myPurchase.html">My Purchase</a>
                 <a href="aboutUs.html">About Us</a>
                 <a href="contactUs.html">Contact Us</a>
-                <a href="login.html">Log In</a>
+                <!-- <a href="login.html">Log In</a> -->
             </nav>
         </header>
 
-        <div class="bookConfirm-head">
+        <div class="bookConfirm-head" style="z-index: -1;">
             <h1>Contact Details</h1>
         </div>
 
-        <div class="details-payment">
-            <table class="contactDetails-table">
-                <tr>
-                    <td>
-                        <h2>Full Name</h2>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Mr. Madara Uchiha</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h3>Phone Number</h3>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>(+62)81 234 567 8910</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Email</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>uchihamadara@gmail.com</p>
-                    </td>
-                </tr>
-            </table>
-        </div>
+            <div class="details-payment">
+                <table class="contactDetails-table">
+                    <tr>
+                        <td>
+                            <h2>Full Name</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p id="fullName"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Phone Number</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p id="phoneNumber"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Email</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p id="email"></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
         <div class="priceDetails-text">
             <h1>Price Details</h1>
@@ -76,7 +76,7 @@
             <table class="priceDetails-table">  
                 <tr>
                     <td>
-                        <h2>Jakarta &rarr; Surabaya</h2>
+                        <h2 class="route"></h2>
                     </td>
                 </tr>
                 <tr>
@@ -85,26 +85,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Adult (x3)</td>
-                    <td class="price-detail-td">Rp 730,000</td>
+                    <td class="passenger-info"></td>
+                    <td class="price-info price-detail-td"></td>
                 </tr>
             
-                <tr>
-                    <td>
-                        <hr>
-                        <h2>Jakarta &rarr; Surabaya</h2>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h3>Price</h3>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Adult (x3)</td>
-                    <td class="price-detail-td">Rp 730,000</td>
-                </tr> 
-                <hr>
                 <tr>
                     <td>
                     <hr>
@@ -124,14 +108,17 @@
             <table class="payment-table">
             <tr>
                 <td>
-                <h1>Total Payment <span> Rp 1,500,000 </h1>
+                    <h1 class="total-price"></h1>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button class="paymentButton" id="payButton" fun>Continue to Payment</button>
+                    <button class="paymentButton" id="payButton" fun>Booking Now</button>
                 </td>
             </tr>
+            <div id="success-message" class="hidden">
+                Data telah diterima dengan nomor registrasi: <span id="registration-number"></span>
+            </div>
             </table>
         </div>
 

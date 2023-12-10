@@ -20,11 +20,11 @@
             </button>        
 
             <nav class="nav">
-                <a href="home.html">Home</a>
+                <a href="index.html">Home</a>
                 <a href="myPurchase.html">My Purchase</a>
                 <a href="aboutUs.html">About Us</a>
                 <a href="contactUs.html">Contact Us</a>
-                <a href="login.html">Log In</a>
+                <!-- <a href="login.html">Log In</a> -->
             </nav>
         </header>
         <div class="searchBox">
@@ -37,22 +37,21 @@
                         <h1>Select Departure Sailing</h1>
                     </td>
                     <td rowspan="3">
-                        <a href="home.html">
+                        <a href="index.html">
                             <button class="search-changeButton">CHANGE SEARCH</button>
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <h2>Jakarta &rarr; Surabaya</h2>
+                        <h2 id="route"></h2>
                     </td>
                 </tr>
                 <tr>
-                    <td>6 November 2023  ||  3 Passangers  ||  Executive</td>
+                    <td id="details"></td>
                 </tr>
             </table>
         </div> 
-
         <div class="ticketSearch">
             <table class="ticketSearch-table">
                 <tr>
@@ -61,16 +60,16 @@
                 <tr>
                     <td><img src="assets/bali_eka_jaya_l.png" alt=""></td>
                     <td class="ticketSearch-time">
-                        <h2>06:00 &rarr; 05:30</h2>
+                        <h2>07:00:00 &rarr; 13:30:00</h2>
                     </td>
                     <td><img src="assets/utensil.jpg" alt="" class="searchBox-img"></td>
                     <td class="luggage"><img src="assets/luggage-26184_1280.webp" alt=""></td>
                     <td>
-                        <h2>Rp 250,000/pax</h2>
+                        <h2 id="priceTag">Rp 250.000/pax</h2>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">Duration: 23h 30m</td>
+                    <td colspan="2">Duration: 6h 30m</td>
                     <td colspan="2">Type: Direct</td>
                     <td rowspan="2">
                         <a href="bookform.html">
@@ -79,7 +78,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4">
+                    <td colspan="5">
                         <button onclick="myFunction('detail')" class="ticketSearch-Button">Sail Details</button> 
                         <button onclick="myFunction('price')" class="ticketSearch-Button" >Price Details</button>
                         <button onclick="myFunction('policy')" class="ticketSearch-Button">Policy</button> 
@@ -91,34 +90,41 @@
                 <table>
                     <tr>
                         <td>
-                        <img src="assets/bali_eka_jaya_l.png">                                        
-                        <td>C67980BA |  Executive  |  Baggage: 30 kg  |  Free meals</td>
-                    </tr>   
+                            <img src="assets/bali_eka_jaya_l.png">
+                        </td>
+                        <td id="ticketInfo">
+                            C67980BA |  Executive  |  Baggage: 30 kg  |  Free meals
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <h3>Departure</h3>
                         </td>
-                    </tr> 
+                    </tr>
                     <tr>
-                        <td>Jakarta  |  06:00 WIB  |  6 November 2023</td>
-                    </tr> 
+                        <td id="departureInfo">
+                            <!-- Nilai Departure akan diubah melalui JavaScript -->
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <h3>Arrival</h3>
                         </td>
-                    </tr>           
+                    </tr>
                     <tr>
-                        <td>Surabaya  |  06:30 WIB  | 7 November 2023</td>
+                        <td id="arrivalInfo">
+                            <!-- Nilai Arrival akan diubah melalui JavaScript -->
+                        </td>
                     </tr>
                 </table>
             </div>
-            <div id="price" class="ticket-detail">
+                <div id="price" class="ticket-detail">
                 <hr>
                 <h3>Fare</h3>
                 <table class="search-detail">
                     <tr>
-                        <td>Adult (x3)</td>
-                        <td class="search-detail-td">Rp 730,000</td>
+                        <td id="passengerInfo"></td>
+                        <td class="search-detail-td" id="priceInfo"></td>
                     </tr>
                 </table>
                 <h3>Tax and other fees</h3>
@@ -135,11 +141,11 @@
                             <h2>Total</h2>
                         </td>
                         <td>
-                            <h2 class="search-detail-td">Rp 750,000</h2>
+                            <h2 class="search-detail-td" id="totalPrice"></h2>
                         </td>
                     </tr>
                 </table>
-            </div>
+                </div>
             <div id="policy" class="ticket-detail">
                 <hr>
                 <table class="search-detail-policy">
@@ -165,16 +171,16 @@
                 <tr>
                     <td><img src="assets/bali_eka_jaya_l.png" alt=""></td>
                     <td class="ticketSearch-time">
-                        <h2>06:00 &rarr; 05:30</h2>
+                        <h2>09:00:00 &rarr; 15:30:00</h2>
                     </td>
                     <td><img src="assets/utensil.jpg" alt="" class="searchBox-img"></td>
                     <td class="luggage"><img src="assets/luggage-26184_1280.webp" alt=""></td>
                     <td>
-                        <h2>Rp 250,000/pax</h2>
+                        <h2 id="priceTag">Rp 250.000/pax</h2>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">Duration: 23h 30m</td>
+                    <td colspan="2">Duration: 6h 30m</td>
                     <td colspan="2">Type: Direct</td>
                     <td rowspan="2">
                         <a href="bookform.html">
@@ -183,7 +189,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4">
+                    <td colspan="5">
                         <button onclick="myFunction('detail2')" class="ticketSearch-Button">Sail Details</button> 
                         <button onclick="myFunction('price2')" class="ticketSearch-Button" >Price Details</button>
                         <button onclick="myFunction('policy2')" class="ticketSearch-Button">Policy</button> 
@@ -195,34 +201,41 @@
                 <table>
                     <tr>
                         <td>
-                        <img src="assets/bali_eka_jaya_l.png">                                        
-                        <td>C67980BA |  Executive  |  Baggage: 30 kg  |  Free meals</td>
-                    </tr>   
+                            <img src="assets/bali_eka_jaya_l.png">
+                        </td>
+                        <td id="ticketInfo">
+                            C67980BA |  Executive  |  Baggage: 30 kg  |  Free meals
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <h3>Departure</h3>
                         </td>
-                    </tr> 
+                    </tr>
                     <tr>
-                        <td>Jakarta  |  06:00 WIB  |  6 November 2023</td>
-                    </tr> 
+                        <td id="departureInfo2">
+                            <!-- Nilai Departure akan diubah melalui JavaScript -->
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <h3>Arrival</h3>
                         </td>
-                    </tr>           
+                    </tr>
                     <tr>
-                        <td>Surabaya  |  06:30 WIB  | 7 November 2023</td>
+                        <td id="arrivalInfo2">
+                            <!-- Nilai Arrival akan diubah melalui JavaScript -->
+                        </td>
                     </tr>
                 </table>
             </div>
-            <div id="price2" class="ticket-detail">
+                <div id="price2" class="ticket-detail">
                 <hr>
                 <h3>Fare</h3>
                 <table class="search-detail">
                     <tr>
-                        <td>Adult (x3)</td>
-                        <td class="search-detail-td">Rp 730,000</td>
+                        <td id="passengerInfo2"></td>
+                        <td class="search-detail-td" id="priceInfo2"></td>
                     </tr>
                 </table>
                 <h3>Tax and other fees</h3>
@@ -239,11 +252,11 @@
                             <h2>Total</h2>
                         </td>
                         <td>
-                            <h2 class="search-detail-td">Rp 750,000</h2>
+                            <h2 class="search-detail-td" id="totalPrice2"></h2>
                         </td>
                     </tr>
                 </table>
-            </div>
+                </div>
             <div id="policy2" class="ticket-detail">
                 <hr>
                 <table class="search-detail-policy">
@@ -269,16 +282,16 @@
                 <tr>
                     <td><img src="assets/bali_eka_jaya_l.png" alt=""></td>
                     <td class="ticketSearch-time">
-                        <h2>06:00 &rarr; 05:30</h2>
+                        <h2>11:00:00 &rarr; 17:30:00</h2>
                     </td>
                     <td><img src="assets/utensil.jpg" alt="" class="searchBox-img"></td>
                     <td class="luggage"><img src="assets/luggage-26184_1280.webp" alt=""></td>
                     <td>
-                        <h2>Rp 250,000/pax</h2>
+                        <h2 id="priceTag">Rp 250.000/pax</h2>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">Duration: 23h 30m</td>
+                    <td colspan="2">Duration: 6h 30m</td>
                     <td colspan="2">Type: Direct</td>
                     <td rowspan="2">
                         <a href="bookform.html">
@@ -287,7 +300,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4">
+                    <td colspan="5">
                         <button onclick="myFunction('detail3')" class="ticketSearch-Button">Sail Details</button> 
                         <button onclick="myFunction('price3')" class="ticketSearch-Button" >Price Details</button>
                         <button onclick="myFunction('policy3')" class="ticketSearch-Button">Policy</button> 
@@ -299,34 +312,41 @@
                 <table>
                     <tr>
                         <td>
-                        <img src="assets/bali_eka_jaya_l.png">                                        
-                        <td>C67980BA |  Executive  |  Baggage: 30 kg  |  Free meals</td>
-                    </tr>   
+                            <img src="assets/bali_eka_jaya_l.png">
+                        </td>
+                        <td id="ticketInfo">
+                            C67980BA |  Executive  |  Baggage: 30 kg  |  Free meals
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <h3>Departure</h3>
                         </td>
-                    </tr> 
+                    </tr>
                     <tr>
-                        <td>Jakarta  |  06:00 WIB  |  6 November 2023</td>
-                    </tr> 
+                        <td id="departureInfo3">
+                            <!-- Nilai Departure akan diubah melalui JavaScript -->
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <h3>Arrival</h3>
                         </td>
-                    </tr>           
+                    </tr>
                     <tr>
-                        <td>Surabaya  |  06:30 WIB  | 7 November 2023</td>
+                        <td id="arrivalInfo3">
+                            <!-- Nilai Arrival akan diubah melalui JavaScript -->
+                        </td>
                     </tr>
                 </table>
             </div>
-            <div id="price3" class="ticket-detail">
+                <div id="price3" class="ticket-detail">
                 <hr>
                 <h3>Fare</h3>
                 <table class="search-detail">
                     <tr>
-                        <td>Adult (x3)</td>
-                        <td class="search-detail-td">Rp 730,000</td>
+                        <td id="passengerInfo3"></td>
+                        <td class="search-detail-td" id="priceInfo3"></td>
                     </tr>
                 </table>
                 <h3>Tax and other fees</h3>
@@ -343,11 +363,11 @@
                             <h2>Total</h2>
                         </td>
                         <td>
-                            <h2 class="search-detail-td">Rp 750,000</h2>
+                            <h2 class="search-detail-td" id="totalPrice3"></h2>
                         </td>
                     </tr>
                 </table>
-            </div>
+                </div>
             <div id="policy3" class="ticket-detail">
                 <hr>
                 <table class="search-detail-policy">
@@ -373,16 +393,16 @@
                 <tr>
                     <td><img src="assets/bali_eka_jaya_l.png" alt=""></td>
                     <td class="ticketSearch-time">
-                        <h2>06:00 &rarr; 05:30</h2>
+                        <h2>13:00:00 &rarr; 19:30:00</h2>
                     </td>
                     <td><img src="assets/utensil.jpg" alt="" class="searchBox-img"></td>
                     <td class="luggage"><img src="assets/luggage-26184_1280.webp" alt=""></td>
                     <td>
-                        <h2>Rp 250,000/pax</h2>
+                        <h2 id="priceTag">Rp 250.000/pax</h2>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">Duration: 23h 30m</td>
+                    <td colspan="2">Duration: 6h 30m</td>
                     <td colspan="2">Type: Direct</td>
                     <td rowspan="2">
                         <a href="bookform.html">
@@ -391,7 +411,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4">
+                    <td colspan="5">
                         <button onclick="myFunction('detail4')" class="ticketSearch-Button">Sail Details</button> 
                         <button onclick="myFunction('price4')" class="ticketSearch-Button" >Price Details</button>
                         <button onclick="myFunction('policy4')" class="ticketSearch-Button">Policy</button> 
@@ -403,34 +423,41 @@
                 <table>
                     <tr>
                         <td>
-                        <img src="assets/bali_eka_jaya_l.png">                                        
-                        <td>C67980BA |  Executive  |  Baggage: 30 kg  |  Free meals</td>
-                    </tr>   
+                            <img src="assets/bali_eka_jaya_l.png">
+                        </td>
+                        <td id="ticketInfo">
+                            C67980BA |  Executive  |  Baggage: 30 kg  |  Free meals
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <h3>Departure</h3>
                         </td>
-                    </tr> 
+                    </tr>
                     <tr>
-                        <td>Jakarta  |  06:00 WIB  |  6 November 2023</td>
-                    </tr> 
+                        <td id="departureInfo4">
+                            <!-- Nilai Departure akan diubah melalui JavaScript -->
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <h3>Arrival</h3>
                         </td>
-                    </tr>           
+                    </tr>
                     <tr>
-                        <td>Surabaya  |  06:30 WIB  | 7 November 2023</td>
+                        <td id="arrivalInfo4">
+                            <!-- Nilai Arrival akan diubah melalui JavaScript -->
+                        </td>
                     </tr>
                 </table>
             </div>
-            <div id="price4" class="ticket-detail">
+                <div id="price4" class="ticket-detail">
                 <hr>
                 <h3>Fare</h3>
                 <table class="search-detail">
                     <tr>
-                        <td>Adult (x3)</td>
-                        <td class="search-detail-td">Rp 730,000</td>
+                        <td id="passengerInfo4"></td>
+                        <td class="search-detail-td" id="priceInfo4"></td>
                     </tr>
                 </table>
                 <h3>Tax and other fees</h3>
@@ -447,11 +474,11 @@
                             <h2>Total</h2>
                         </td>
                         <td>
-                            <h2 class="search-detail-td">Rp 750,000</h2>
+                            <h2 class="search-detail-td" id="totalPrice4"></h2>
                         </td>
                     </tr>
                 </table>
-            </div>
+                </div>
             <div id="policy4" class="ticket-detail">
                 <hr>
                 <table class="search-detail-policy">
@@ -469,6 +496,7 @@
                 </table>
             </div>
         </div> 
+
 
         <footer class="footer">
             <p class="footer-copyright">&copy; 2023 Ocean 7 Traverse, Inc. All rights reserved</p>
