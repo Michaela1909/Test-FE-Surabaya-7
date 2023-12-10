@@ -405,6 +405,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
 // Fungsi toggleNav() untuk diaktifkan melalui atribut onclick
 function toggleNav() {
     const nav = document.querySelector('.nav');
