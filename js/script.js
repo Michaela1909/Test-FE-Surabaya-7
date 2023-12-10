@@ -314,64 +314,71 @@ if (timeElement) {
     console.log('Elemen tidak ditemukan.');
 }
 
-// Ambil nilai dari elemen formulir
-var fromValue = document.getElementById('fromInput').value;
-var toValue = document.getElementById('toInput').value;
-var dateValue = document.getElementById('dateInput').value;
-var passengersValue = document.getElementById('passengersInput').value;
 
-// Ambil nilai dari elemen formulir kontak
-var salutationValue = document.querySelector('input[name="salutation"]:checked').value;
-var nameValue = document.getElementsByName('name')[0].value;
-var phoneNumberValue = document.getElementsByName('phone_number')[0].value;
-var emailValue = document.getElementsByName('email')[0].value;
-
-// Ambil total harga dari localStorage (harus disimpan sebelumnya oleh skrip lain)
-var totalPrice = localStorage.getItem('totalPrice');
-
-// Objek data untuk dikirim melalui fetch
-var formData = {
-    from: fromValue,
-    to: toValue,
-    date: dateValue,
-    passengers: passengersValue,
-    salutation: salutationValue,
-    name: nameValue,
-    phone_number: phoneNumberValue,
-    email: emailValue,
-    totalPrice: totalPrice // Tambahkan total harga ke dalam objek data
-};
-
-// Lakukan permintaan fetch
-fetch('test-be-surabaya-7-production.up.railway.app/bookconfirm', {
-    method: 'POST',
-    headers: {
+// Menangani pengiriman formulir ketika formulir disubmit
+form.addEventListener("submit", function (event) {
+    event.preventDefault(); // Menghentikan perilaku bawaan submit
+  
+    // Ambil nilai dari elemen formulir
+    var fromValue = document.getElementById('fromInput').value;
+    var toValue = document.getElementById('toInput').value;
+    var dateValue = document.getElementById('dateInput').value;
+    var passengersValue = document.getElementById('passengersInput').value;
+  
+    // Ambil nilai dari elemen formulir kontak
+    var salutationValue = document.querySelector('input[name="salutation"]:checked').value;
+    var nameValue = document.getElementsByName('name')[0].value;
+    var phoneNumberValue = document.getElementsByName('phone_number')[0].value;
+    var emailValue = document.getElementsByName('email')[0].value;
+  
+    // Ambil total harga dari localStorage (harus disimpan sebelumnya oleh skrip lain)
+    var totalPrice = localStorage.getItem('totalPrice');
+  
+    // Objek data untuk dikirim melalui fetch
+    var formData = {
+      from: fromValue,
+      to: toValue,
+      date: dateValue,
+      passengers: passengersValue,
+      salutation: salutationValue,
+      name: nameValue,
+      phone_number: phoneNumberValue,
+      email: emailValue,
+      totalPrice: totalPrice // Tambahkan total harga ke dalam objek data
+    };
+  
+    // Lakukan permintaan fetch
+    fetch('https://test-be-surabaya-7-production.up.railway.app/bookconfirm', {
+      method: 'POST',
+      headers: {
         'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
-})
-    .then((response) => {
-        if (response.ok) {
-        return response.json(); // Menguraikan respons JSON jika berhasil
-        } else {
-        throw new Error("Permintaan gagal"); // Mengangkat kesalahan jika permintaan gagal
-        }
+      },
+      body: JSON.stringify(formData)
     })
-    .then((data) => {
+      .then((response) => {
+        if (response.ok) {
+          return response.json(); // Menguraikan respons JSON jika berhasil
+        } else {
+          throw new Error("Permintaan gagal"); // Mengangkat kesalahan jika permintaan gagal
+        }
+      })
+      .then((data) => {
         if (data.message) {
-            // Menampilkan pesan dari server dengan nomor registrasi
-            const registrationNumber = data.message.split(" ").pop();
-            const successMessage = document.getElementById("success-message");
-            const registrationNumberSpan = document.getElementById("registration-number");
-      
-            registrationNumberSpan.textContent = registrationNumber;
-            successMessage.classList.remove("hidden");
-            // Di sini Anda bisa menangani respons dari server
-          } else {
-            throw new Error("Pesan tidak ditemukan dalam respons");
-          }
-        })
-        .catch((error) => {
-          console.error("Terjadi kesalahan:", error);
-          // Di sini Anda bisa menangani kesalahan jika permintaan gagal
-        });
+          // Menampilkan pesan dari server dengan nomor registrasi
+          const registrationNumber = data.message.split(" ").pop();
+          const successMessage = document.getElementById("success-message");
+          const registrationNumberSpan = document.getElementById("registration-number");
+  
+          registrationNumberSpan.textContent = registrationNumber;
+          successMessage.classList.remove("hidden");
+          // Di sini Anda bisa menangani respons dari server
+        } else {
+          throw new Error("Pesan tidak ditemukan dalam respons");
+        }
+      })
+      .catch((error) => {
+        console.error("Terjadi kesalahan:", error);
+        // Di sini Anda bisa menangani kesalahan jika permintaan gagal
+      });
+  });
+  
